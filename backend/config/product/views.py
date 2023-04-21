@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from rest_framework import views, status
+from rest_framework.response import Response
+
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from .models import Product, Category
-from .serializer import ProductSerializer
+from .models import Product, Category, Discount
+from .serializer import ProductSerializer, DiscountSerializer
 
 from rest_framework import filters
 
@@ -20,6 +23,23 @@ class ProductAPIUpdate(generics.RetrieveUpdateAPIView):
     serializer_class = ProductSerializer
     permission_classes = (IsAuthenticated,)
 
+
 class ProductAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class DiscountAPIList(generics.ListCreateAPIView):
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
+
+
+class DiscountAPIUpdate(generics.RetrieveUpdateAPIView):
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
+
+
+class DiscountAPIDestroy(generics.RetrieveDestroyAPIView):
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
+

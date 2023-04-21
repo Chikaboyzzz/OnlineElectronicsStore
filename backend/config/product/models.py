@@ -19,3 +19,22 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Discount(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='discounts')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    discount_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        # Calculate the discount price based on the product price and discount amount
+        if self.product and self.amount:
+            self.discount_price = self.product.price - (self.product.price * (self.amount / 100))
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.amount}% Discount"
+
