@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -33,8 +33,16 @@ class Discount(models.Model):
         if self.product and self.amount:
             self.discount_price = self.product.price - (self.product.price * (self.amount / 100))
 
-        super().save(*args, **kwargs)
+        # Check if this is an update to an existing discount
+        if self.pk:
+            super().save(*args, **kwargs)
+        else:
+            # Check if the product already has a discount associated with it
+            existing_discount = Discount.objects.filter(product=self.product).first()
+            if existing_discount:
+                raise ValidationError('This product already has a discount associated with it.')
+            else:
+                super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.product.name} - {self.amount}% Discount"
-
