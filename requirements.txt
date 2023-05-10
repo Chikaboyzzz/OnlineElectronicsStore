@@ -1,5 +1,10 @@
 Django==4.2.0
+
 djangorestframework==3.14.0
+
 django_filter==23.1
+
 djangorestframework_simplejwt==5.2.2
-psycopg2
+psycopg2==23.1
+
+django-cors-headers==23.1.2
