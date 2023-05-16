@@ -1,6 +1,10 @@
-Django==4.2.0
+Django==4.2
+django-cors-headers==3.14.0
+django-filter==23.1
 djangorestframework==3.14.0
-django_filter==23.1
-djangorestframework_simplejwt==5.2.2
-psycopg2==23.1
-django-cors-headers==23.1.2
+djangorestframework-simplejwt==5.2.2
+psycopg2==2.9.6
+PyJWT==2.6.0
+pytz==2023.3
+sqlparse==0.4.4
+tzdata==2023.3

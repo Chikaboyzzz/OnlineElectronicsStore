@@ -1,4 +1,7 @@
-from django.shortcuts import get_object_or_404
+
+from rest_framework.parsers import MultiPartParser, FormParser
+
+
 from rest_framework import views, status
 from rest_framework.response import Response
 
@@ -9,6 +12,12 @@ from .models import Product, Category, Discount
 from .serializer import ProductSerializer, DiscountSerializer
 
 from rest_framework import filters
+
+
+from rest_framework.views import APIView
+
+from .models import Product
+
 
 class ProductAPIList(generics.ListCreateAPIView):
     queryset = Product.objects.all()

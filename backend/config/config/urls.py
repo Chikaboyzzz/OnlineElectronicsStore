@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from product.views import DiscountAPIList, DiscountAPIUpdate, DiscountAPIDestroy
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/product/', ProductAPIList.as_view()),
