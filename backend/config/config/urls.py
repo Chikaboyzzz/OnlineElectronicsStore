@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from product.views import ProductAPIList, ProductAPIUpdate, ProductAPIDestroy
+from product.views import ProductAPIList, ProductAPIUpdate, ProductAPIDestroy, ProductDetailAPIList, ImageView
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
@@ -12,6 +12,13 @@ urlpatterns = [
     path('api/v1/product/', ProductAPIList.as_view()),
     path('api/v1/product/<int:pk>/', ProductAPIUpdate.as_view()),
     path('api/v1/productdelete/<int:pk>/', ProductAPIDestroy.as_view()),
+
+    path('api/v1/product/image/<int:pk>/', ImageView.as_view(), name='image_view'),
+
+    path('api/v1/productDetail/', ProductDetailAPIList.as_view()),
+
+
+
 
     path('api/v1/discount/', DiscountAPIList.as_view()),
     path('api/v1/discount/update/<int:pk>/', DiscountAPIUpdate.as_view()),

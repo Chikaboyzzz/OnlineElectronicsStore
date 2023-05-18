@@ -139,7 +139,3 @@ class Stocks(models.Model):
     def __str__(self):
         return f"{self.productID} - Qty: {self.qty}"
 
-
-
-
-# удалить prior_salary и line item
