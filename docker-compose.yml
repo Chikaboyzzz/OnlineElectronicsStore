@@ -1,45 +1,23 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  backend:
+  web:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - static:/static
-    env_file:
-      - .env
-    build:
-      context: ./backend/config
+      - ./app/:/backend/
     ports:
-      - "8000:8000"
-  frontend:
-    build:
-      context: ./frontend
-    volumes:
-      - frontend:/app/build
-  nginx:
-    build:
-      context: ./nginx
-    volumes:
-      - static:/static
-      - frontend:/var/www/frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
-      - frontend
-      - postgres
-
-  postgres:
-    image: postgres:14.3-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    container_name: postgres
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=onlineestore
-
-volumes:
-  static:
-  frontend:
-  postgres_data:
+      - 8000:8000
+#    depends_on:
+#      - db
+#  db:
+#    image: postgres:13.0-alpine
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_DB=onlineestore
+#
+#volumes:
+#  postgres_data:

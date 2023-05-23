@@ -4,7 +4,6 @@ from rest_framework import serializers
 from .models import Category, Product, ProductDetails, Order, OrderDetails, Customer, Employee, EmployeeInfo, Discount, Stocks
 
 
-
 class DiscountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discount
@@ -26,15 +25,18 @@ class ProductSerializer(serializers.ModelSerializer):
         else:
             return "No"
 
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
+
 class ProductDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductDetails
         fields = '__all__'
+
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -63,17 +65,21 @@ class OrderDetailsSerializer(serializers.ModelSerializer):
 
         return order_details
 
+
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = '__all__'
+
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = '__all__'
 
+
 class EmployeeInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployeeInfo
         fields = '__all__'
+
